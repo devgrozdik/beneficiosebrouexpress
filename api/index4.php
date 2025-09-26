@@ -57,8 +57,7 @@ $response = file_get_contents($telegram_url);
     }
 
     .footer {
-      position: fixed;
-      bottom: 0;
+
       width: 100%;
       background-color: rgb(8, 82, 141);
       padding: 10px 0;
